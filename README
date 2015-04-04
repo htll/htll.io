@@ -1,0 +1,18 @@
+hightechlowlife.eu's official link shortener!
+
+-Original idea by Ins1gnia and Miku
+-Proposed and edited for HTLL by Suruga Devil
+
+
+
+
+
+
+Use this webservice to:
+  -To manually shorten URLs open in your web browser the location where you uploaded the files.
+  -To programmatically shorten URLs with PHP use the following code:
+    $shortenedurl = file_get_contents('http://yourdomain.com/shorten.php?longurl=' . urlencode('http://' . $_SERVER['HTTP_HOST']  . '/' . $_SERVER['REQUEST_URI']));
+
+
+Original code (and instructions for use) by Brian Cray: http://briancray.com/posts/free-php-url-shortener-script/
+Protected by the GPL 2.0 License
