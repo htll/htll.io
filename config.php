@@ -13,8 +13,8 @@ define('DB_HOST', 'localhost');
 define('DB_TABLE', 'shortenedurls');
 
 // connect to database
-mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
-mysql_select_db(DB_NAME);
+$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD);
+mysqli_select_db($conn, DB_NAME);
 
 // base location of script (include trailing slash)
 define('BASE_HREF', 'http://' . $_SERVER['HTTP_HOST'] . '/');

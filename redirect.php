@@ -21,11 +21,16 @@ if(CACHE)
 	$long_url = file_get_contents(CACHE_DIR . $shortened_id);
 	if(empty($long_url) || !preg_match('|^https?://|', $long_url))
 	{
-		$long_url = mysql_result(mysql_query('SELECT long_url FROM ' . DB_TABLE . ' WHERE id="' . mysql_real_escape_string($shortened_id) . '"'), 0, 0);
-		@mkdir(CACHE_DIR, 0777);
-		$handle = fopen(CACHE_DIR . $shortened_id, 'w+');
-		fwrite($handle, $long_url);
-		fclose($handle);
+		$sql = 'SELECT long_url FROM ' . DB_TABLE . ' WHERE id="' . mysqli_real_escape_string($conn, $shortened_id) . '"';
+		$result = mysqli_query($conn, $sql);
+		if (mysqli_num_rows($result) > 0) {
+
+			$long_url = mysqli_fetch_assoc($result)["long_url"];
+			@mkdir(CACHE_DIR, 0777);
+			$handle = fopen(CACHE_DIR . $shortened_id, 'w+');
+			fwrite($handle, $long_url);
+			fclose($handle);
+		}
 	}
 }
 else
